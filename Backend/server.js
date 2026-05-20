@@ -1,7 +1,7 @@
+import dotenv from 'dotenv'
 import app from "../Backend/app.js"
 
 // Dotenv configuration
-import dotenv from 'dotenv'
 dotenv.config({ path: '.env' })
 dotenv.config({ path: '.env.local' })
 
