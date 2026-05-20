@@ -7,7 +7,7 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js --ignore public/",
+    "dev": "nodemon src/server.js --ignore public/",
     "production": "NODE-ENV=production"
   },
   "dependencies": {
