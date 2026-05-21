@@ -50,5 +50,5 @@ userSchema.pre(/^find/, function (next) {
 })
 
 // Export user Schema
-const User = mongoose.model('User', userSchema);
-export default User
+const user = mongoose.model('user', userSchema);
+export default user
