@@ -44,6 +44,8 @@ const userAuthSchema = new Schema({
         type: Date,
         select: false,
     },
+
+    // Auth Type and loggin sessions
     authType: {
         type: String,
         default: 'email'
