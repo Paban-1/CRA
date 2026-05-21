@@ -25,3 +25,15 @@ this is for internal user/owner creation with open any public API/endpoint
 
 ## What dose <span style="color:yellow;"> where</span> do ?
 + This is responsible to add { removed : false } this line to the queries, basically this do add this like after what ever another queries passed <b>User.findById({ _id: id, removed: false })</b> so after add id, <span style="color:yellow;"> where</span> will add <b>removed: false.</b>
+
+## Explane code in the <span style="color:red;">userAuth.model.js</span>
+
+<pre><code>
+  loggedSessions: {
+        type: [String],
+        default: []
+    }
+</code></pre>
+  ### <span style="color:red">loggedSessions </span> :
+  + When user login with deffrent devices like ( Mobile, Laptop, Desktop ) every devices JWT token will store in the <b>emapty array</b>, as default it's empty.
++ So if user's account <b>compromised</b> or user notices somthing <b>suspicious activity</b> user can make <b>logOut</b> from all devices.
