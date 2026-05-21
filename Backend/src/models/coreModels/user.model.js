@@ -1,9 +1,9 @@
 // Import mongoose
-import mongoose, { mongo } from "mongoose"
+import mongoose from "mongoose"
 const Schema = mongoose.Schema
 
 // Create a user schema
-const userShcema = new Schema({
+const userSchema = new Schema({
     // Soft Delete/Remove
     removed: {
         type: Boolean,
@@ -18,15 +18,16 @@ const userShcema = new Schema({
         type: String,
         lowercase: true,
         trim: true,
+        unique: true,
         required: true
     },
     name: {
         type: String,
         required: true,
-        minlenght: [3, 'Name must be 3 characters Long']
+        minlength: [3, 'Name must be 3 characters Long']
     }, surname: {
         type: String,
-        minlenght: [3, 'Surname must be 3 characters Long']
+        minlength: [3, 'Surname must be 3 characters Long']
     },
     photo: {
         type: String, // URL from Cloudinary
@@ -41,5 +42,5 @@ const userShcema = new Schema({
     { timestamps: true })
 
 // Export user Schema
-const User = mongoose.model('user', userShcema);
+const User = mongoose.model('User', userSchema);
 export default User
