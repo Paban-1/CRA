@@ -39,7 +39,15 @@ const userSchema = new Schema({
         enum: ['owner', 'admin', 'manager', 'employee']
     },
 },
-    { timestamps: true })
+    { timestamps: true }
+)
+
+
+// Auto filter to removed users from all queries to only gets active users
+userSchema.pre(/^find/, function (next) {
+    this.where({ removed: false })
+    next()
+})
 
 // Export user Schema
 const User = mongoose.model('User', userSchema);
