@@ -1,6 +1,6 @@
 // Import mongoose
 import mongoose from "mongoose"
-const Schema = mongoose.Schema
+const { Schema } = mongoose
 
 // Create a user schema
 const userSchema = new Schema({
