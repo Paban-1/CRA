@@ -56,5 +56,15 @@ const userAuthSchema = new Schema({
     }
 }, { timestamps: true })
 
+// Hash The password
+userAuthSchema.methods.generateHash = async function (password) {
+    return await bcrypt.hash(password, 12)
+}
+
+// Validate Password
+userAuthSchema.methods.validPassword = async function (userpassword) {
+    return await bcrypt.compare(userpassword, this.password)
+}
+
 const userAuth = mongoose.model('userAuthSchema', userAuthSchema)
 export default userAuth
