@@ -56,3 +56,44 @@ node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
   + user can now login 
 
 ### The flow
+<pre><code>
+register controller
+      ↓
+generates emailToken → 'a3f8c2d1...'
+      ↓
+saves to DB:
+emailToken: 'a3f8c2d1...'
+emailTokenExpiry: 24 hours
+emailVerified: false
+enabled: false
+      ↓
+passes to sendVerificationEmail()
+      ↓
+email.utils.js builds link:
+http://localhost:5173/verify-email?token=a3f8c2d1...
+      ↓
+Resend sends email to user 📧
+      ↓
+User opens email
+      ↓
+User clicks link
+      ↓
+Frontend reads token from URL
+      ↓
+Frontend calls:
+GET /api/auth/verify-email?token=a3f8c2d1...
+      ↓
+verifyEmail controller runs
+      ↓
+finds token in DB ✅
+      ↓
+checks expiry ✅
+      ↓
+User model → enabled: false to TRUE ✅
+UserAuth model → emailVerified: true ✅
+UserAuth model → emailToken: null ✅
+      ↓
+returns success ✅
+      ↓
+User can now LOGIN! 🎉
+</code></pre>
