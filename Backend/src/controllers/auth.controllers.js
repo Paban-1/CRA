@@ -2,9 +2,10 @@
 import User from '../models/coreModels/user.model.js'
 import UserAuth from '../models/coreModels/userAuth.model.js'
 import { AppError } from '../utils/error.utils.js'
+import { sendVerificationEmail } from '../utils/email.utils.js'
 
 // Regiseter a new user
-export const register = async (req, res) => {
+export const register = async (req, res, next) => {
     // try chatch block to handle errors
     try {
         const { email, name, surname, password } = req.body
@@ -12,7 +13,7 @@ export const register = async (req, res) => {
         // check for exitsing user with the same email
         const existingUser = await User.findOne({ email })
         if (existingUser) {
-            return res.status(400).json({ message: 'User with this email already exists' })
+            throw new AppError('Failed to register user', 409)
         }
 
         // Create new user
@@ -37,12 +38,19 @@ export const register = async (req, res) => {
             emailTokenExpiry
         });
 
-        // send verification email Added soon
+        // send verification email 
+        await sendVerificationEmail(
+            createdUser.email,
+            createdUser.name,
+            emailToken
+        )
+
         return res.status(201).json({
             success: true,
             message: 'Registration successful! Please check your email to verify your account'
         })
     } catch (error) {
-        throw new AppError('Failed to register user', 409)
+
+        next(error)
     }
 }
