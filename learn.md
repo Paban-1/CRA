@@ -44,3 +44,15 @@ node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 
 ### To Generate a ACCESS & REFRESH SECRET or any SECRET, the simple way to do is 
 + Run this on Terminal it will generate a random 64 bytes of string <b>node -e "console.log(require('crypto').randomBytes(64).toString('hex'))" </b>
+
+### What verifyEmail Controller do ?
+<pre>
+  <b>simple workflow </b>
+</pre>
+  + user clicks verifycation link in emal
+  + Frontend sends token to backend
+  + backend verifies the token 
+  + enables user account
+  + user can now login 
+
+### The flow
