@@ -1,6 +1,7 @@
 // Import models
 import User from '../models/coreModels/user.model.js'
 import UserAuth from '../models/coreModels/userAuth.model.js'
+import { AppError } from '../utils/error.utils.js'
 
 // Regiseter a new user
 export const register = async (req, res) => {
@@ -42,6 +43,6 @@ export const register = async (req, res) => {
             message: 'Registration successful! Please check your email to verify your account'
         })
     } catch (error) {
-        console.log(error);
+        throw new AppError('Failed to register user', 400)
     }
 }
