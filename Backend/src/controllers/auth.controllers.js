@@ -43,6 +43,6 @@ export const register = async (req, res) => {
             message: 'Registration successful! Please check your email to verify your account'
         })
     } catch (error) {
-        throw new AppError('Failed to register user', 400)
+        throw new AppError('Failed to register user', 409)
     }
 }
