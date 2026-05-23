@@ -37,3 +37,10 @@ this is for internal user/owner creation with open any public API/endpoint
   ### <span style="color:red">loggedSessions </span> :
   + When user login with deffrent devices like ( Mobile, Laptop, Desktop ) every devices JWT token will store in the <b>emapty array</b>, as default it's empty.
 + So if user's account <b>compromised</b> or user notices somthing <b>suspicious activity</b> user can make <b>logOut</b> from all devices.
+
+<pre>
+node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+</pre>
+
+### To Generate a ACCESS & REFRESH SECRET or any SECRET, the simple way to do is 
++ Run this on Terminal it will generate a random 64 bytes of string <b>node -e "console.log(require('crypto').randomBytes(64).toString('hex'))" </b>
